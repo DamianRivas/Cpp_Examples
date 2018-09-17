@@ -75,4 +75,39 @@ int main()
         }
     }
     cout << "\n]\n\n";
+
+    ////////////////// is_sorted ///////////////////
+
+    auto sorted = is_sorted(begin(v2), end(v2)); // According to operator<
+    cout << "Is v2 sorted? " << (sorted ? "yes" : "no") << "\n";
+    sorted = is_sorted(begin(v2), end(v2), [](int e1, int e2) { return abs(e1) > abs(e2); });
+    cout << "Is v2 sorted now? " << (sorted ? "yes" : "no") << "\n";
+
+    //////////// Max/Min and Binary Search //////////////
+
+    int high = *(max_element(begin(v), end(v)));
+    int low = *(min_element(begin(v), end(v)));
+    cout << "Max: " << high << "\nMin: " << low << "\n";
+
+    sort(begin(v2), end(v2));
+    low = *(begin(v2));
+    high = *(--end(v2));
+    cout << "After sorting...\n";
+    cout << "Max: " << high << "\nMin: " << low << "\n";
+
+    int positive = *upper_bound(begin(v2), end(v2), 0); // Binary search
+    cout << "First positive: " << positive << "\n";
+
+    //// Randomization ////
+
+    random_device randomdevice;
+    mt19937 generator(randomdevice());
+
+    shuffle(begin(v2), end(v2), generator);
+    cout << "After shuffling: [ ";
+    for (auto i : v2)
+    {
+        cout << i << " ";
+    }
+    cout << " ]\n";
 }
