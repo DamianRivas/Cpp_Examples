@@ -136,5 +136,27 @@ int main()
     {
         cout << i << " ";
     }
+    cout << " ]\n\n";
+
+    //// Nth Element ////
+    v2 = {1, 5, 4, 2, 9, 7, 3, 8, 2};
+    int i = *(begin(v2) + 4);
+    cout << "Collection Before: [ ";
+    for (auto i : v2)
+    {
+        cout << i << " ";
+    }
     cout << " ]\n";
+    cout << "Middle element: " << i << "\n";
+    // All items after the middle are greater than, items before the middle are
+    // less than:
+    nth_element(begin(v2), begin(v2) + 4, end(v2));
+    cout << "Collection After: [ ";
+    for (auto i : v2)
+    {
+        cout << i << " ";
+    }
+    cout << " ]\n";
+    i = *(begin(v2) + 4);
+    cout << "Middle element: " << i << "\n";
 }
