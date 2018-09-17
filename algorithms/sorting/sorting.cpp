@@ -63,6 +63,7 @@ int main()
     }
     cout << "]\n";
 
+    //// Stable Sort ////
     // stable_sort keeps the original sorted order (by name) of employees with the same salary.
     stable_sort(begin(staff), end(staff), [](Employee e1, Employee e2) { return e1.get_salary() < e2.get_salary(); });
     cout << "Stable sorting by salary after normal sorting by name: [\n  ";
@@ -106,6 +107,32 @@ int main()
     shuffle(begin(v2), end(v2), generator);
     cout << "After shuffling: [ ";
     for (auto i : v2)
+    {
+        cout << i << " ";
+    }
+    cout << " ]\n\n";
+
+    //// Partial Sorting ////
+
+    // First and last arguments are where the elements you plan to sort will be
+    // drawn from
+    // Middle parameter indicates where the non-sorted sequence begins
+    partial_sort(begin(v2), find(begin(v2), end(v2), 4), end(v2));
+    cout << "Partially sorted until the first occurence of `4`...\n[ ";
+    for (auto i : v2)
+    {
+        cout << i << " ";
+    }
+    cout << " ]\n";
+
+    int breakpoint = *is_sorted_until(begin(v2), end(v2));
+    cout << "Now the array is in order until: " << breakpoint << "\n";
+
+    // Now lets copy the first three elements of v, in sorted order, to v3
+    vector<int> v3(3);
+    partial_sort_copy(begin(v), end(v), begin(v3), end(v3));
+    cout << "The first three sorted elements of v: [ ";
+    for (auto i : v3)
     {
         cout << i << " ";
     }
